@@ -27,8 +27,8 @@ setopt EXTENDED_GLOB
 stty -ixon -ixoff
 
 #plugin management with zplug
-source ~/.zplug/init.zsh
-# source /usr/share/zsh/scripts/zplug/init.zsh
+#source ~/.zplug/init.zsh
+source /usr/share/zsh/scripts/zplug/init.zsh
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 zplug "zplug/zplug"
@@ -68,7 +68,7 @@ alias g++="g++ -Wall -pedantic"
 alias vi="nvim"
 alias makeandroid="./gradlew assembleDebug && adb install -r app/build/outputs/apk/app-debug.apk"
 alias gcap="git commit -a && git push"
-alias upass="sudo umount /media/KINGSTON"
+alias upass="sudo umount ~/.password-store"
 alias modelsim="/opt/altera/16.0/modelsim_ase/bin/vsim"
 alias gl="git log --format=\"%C(auto)%h %d %Creset%s%n%Cgreen%ar %C(magenta)%an\" --graph --all"
 alias buspirate="picocom -b 115200 /dev/buspirate"
