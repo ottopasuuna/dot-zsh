@@ -135,6 +135,14 @@ function gshell() {
     fi
 }
 
+function bshell() {
+    if [[ $# -eq 1 ]] then
+        machinectl shell $USER@multimedia /usr/bin/$1
+    else
+        machinectl shell $USER@multimedia
+    fi
+}
+
 
 # Uncomment these if trouble occurs
 # PATH="/home/carl/perl5/bin:/usr/share/pk2${PATH+:}$PATH:$ANDROID_HOME"; export PATH;
