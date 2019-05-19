@@ -1,7 +1,7 @@
 #initialize fasd
-eval "$(fasd --init auto)"
+# eval "$(fasd --init auto)"
 
-autoload -Uz compinit promptinit colors
+autoload -Uz compinit promptinit colors run-help, zmv
 compinit
 promptinit
 colors
@@ -15,10 +15,13 @@ zstyle ':completion:*' completer _expand _complete _ignored _match _approximate
 zstyle ':completion:*:match:*' original only
 zstyle ':completion:*:approximate:*' max-errors 1 numeric
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 unsetopt CASE_GLOB
+unset GREP_OPTIONS
 setopt COMPLETE_ALIASES
 setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
 setopt GLOB_COMPLETE
 setopt emacs #expected readline behaivior
 setopt EXTENDED_GLOB
@@ -27,16 +30,17 @@ setopt EXTENDED_GLOB
 stty -ixon -ixoff
 
 #plugin management with zplug
-#source ~/.zplug/init.zsh
 source /usr/share/zsh/scripts/zplug/init.zsh
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 zplug "zplug/zplug"
 zplug "plugins/git", from:oh-my-zsh, if:"(( $+commands[git] ))"
 zplug "zsh-users/zsh-syntax-highlighting"
-zplug "bcho/Watson.zsh"
 zplug "plugins/colored-man-pages", from:oh-my-zsh
 zplug "caarlos0/zsh-open-pr"
+zplug "esc/conda-zsh-completion"
+zplug "supercrabtree/k"
+zplug "MichaelAquilina/zsh-you-should-use"
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
     if read -q; then
@@ -48,6 +52,7 @@ zplug load
 source ~/.zsh-theme/zsh-git-prompt/zshrc.sh
 source ~/.zsh-theme/gnzh.zsh-theme
 #Aliases
+unsetopt complete_aliases
 alias ls='ls --color=tty'
 alias la="ls -a"
 alias sl="ls"
@@ -58,6 +63,7 @@ alias t="task"
 alias ta="task add"
 alias tm="task mod"
 alias tw="vim +TW"
+alias ti="timew"
 alias yt="youtube-viewer -C"
 alias suspend="systemctl suspend"
 alias music="ncmpcpp"
@@ -80,8 +86,8 @@ for n in {1..9}; do
 done
 
 #Variables
-export PATH=$HOME/.ellipsis/bin:$HOME/bin:/usr/local/bin:$HOME/.gem/ruby/2.3.0/bin:/home/carl/.gem/ruby/2.4.0/bin:$PATH
-export PATH=$HOME/miniconda3/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+# export PATH=$HOME/miniconda3/bin:$PATH
 export LFS=/mnt/lfs
 # export STEAM_RUNTIME=0
 export EDITOR="nvim"
@@ -143,11 +149,32 @@ function bshell() {
     fi
 }
 
+function cheat() {
+    case $1 in
+        'git')
+            zathura ~/Sync/computer/refrence/github-git-cheat-sheet.pdf;;
+        'vim')
+            zathura ~/Sync/computer/refrence/vi-vim-cheat-sheet-and-tutorial.pdf;;
+        'gdb')
+            zathura ~/Sync/computer/refrence/gdb-refcard.pdf;;
+        'c++')
+            zathura ~/Sync/computer/refrence/cpp_reference_sheet.pdf;;
+        'task')
+            zathura ~/Sync/computer/refrence/task-2.3.0.ref.pdf;;
+        'zsh')
+            zathura ~/Sync/computer/refrence/zsh_refcard.pdf;;
+        'bash')
+            zathura ~/Sync/computer/refrence/shellcheatsheet.pdf;;
+        'blender')
+            zathura ~/Sync/computer/refrence/blender-2-5-key-bindings.pdf;;
+        'regex')
+            zathura ~/Sync/computer/refrence/davechild_regular-expressions.pdf;;
+        'awk')
+            zathura ~/Sync/computer/refrence/awk_quickref.pdf;;
+        'systemd')
+            cat ~/Sync/computer/refrence/systemd_unit.service;;
+        *)
+            echo "Cheat not found"
+    esac
+}
 
-# Uncomment these if trouble occurs
-# PATH="/home/carl/perl5/bin:/usr/share/pk2${PATH+:}$PATH:$ANDROID_HOME"; export PATH;
-# PERL5LIB="/home/carl/perl5/lib/perl5${PERL5LIB+:}$PERL5LIB"; export PERL5LIB;
-# PERL_LOCAL_LIB_ROOT="/home/carl/perl5${PERL_LOCAL_LIB_ROOT+:}$PERL_LOCAL_LIB_ROOT"; export PERL_LOCAL_LIB_ROOT;
-# PERL_MB_OPT="--install_base \"/home/carl/perl5\""; export PERL_MB_OPT;
-# PERL_MM_OPT="INSTALL_BASE=/home/carl/perl5"; export PERL_MM_OPT;
-unset GREP_OPTIONS
