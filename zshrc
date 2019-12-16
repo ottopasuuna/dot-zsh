@@ -41,6 +41,7 @@ zplug "caarlos0/zsh-open-pr"
 zplug "esc/conda-zsh-completion"
 zplug "supercrabtree/k"
 zplug "MichaelAquilina/zsh-you-should-use"
+# zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
     if read -q; then
@@ -48,6 +49,12 @@ if ! zplug check --verbose; then
     fi
 fi
 zplug load
+
+
+export SPACESHIP_CONDA_SYMBOL='\uf81f'
+export SPACESHIP_PROMPT_ADD_NEWLINE=false
+export SPACESHIP_CONDA_PREFIX='env '
+export SPACESHIP_GIT_BRANCH_COLOR=yellow
 
 source ~/.zsh-theme/zsh-git-prompt/zshrc.sh
 source ~/.zsh-theme/gnzh.zsh-theme
@@ -86,10 +93,9 @@ for n in {1..9}; do
 done
 
 #Variables
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-# export PATH=$HOME/miniconda3/bin:$PATH
 export LFS=/mnt/lfs
 # export STEAM_RUNTIME=0
+export XDG_CACHE_HOME=~/.cache
 export EDITOR="nvim"
 export KSP=~/.steam/steam/SteamApps/common/Kerbal\ Space\ Program/
 export QT_STYLE_OVERRIDE=gtk
@@ -101,7 +107,17 @@ export DISPLAY=:0.0
 export GTK_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
+export GOPATH=~/Programming/go
+export RACK_DIR=~/Programming/VCVRack/Rack-SDK
+export CUDA_CACHE_PATH="$XDG_CACHE_HOME"/nv
+export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+export LESSHISTFILE=-
+export IPYTHONDIR="$XDG_CONFIG_HOME"/jupyter
+export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME"/jupyter
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+export DVDCSS_CACHE="$XDG_CACHE_HOME"/dvdcss
 
+export PATH=$HOME/bin:$GOPATH/bin:/usr/local/bin:$PATH
 
 #Functions
 function search() {
@@ -174,7 +190,23 @@ function cheat() {
         'systemd')
             cat ~/Sync/computer/refrence/systemd_unit.service;;
         *)
-            echo "Cheat not found"
+            echo "Cheat not found, supported cheats: \n\tgit, vim, gdb, c++, task, zsh, bash, blender, regex, awk, systemd"
     esac
 }
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/carl/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/carl/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/carl/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/carl/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
