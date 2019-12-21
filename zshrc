@@ -1,6 +1,3 @@
-#initialize fasd
-# eval "$(fasd --init auto)"
-
 autoload -Uz compinit promptinit colors run-help, zmv
 compinit
 promptinit
@@ -31,13 +28,6 @@ stty -ixon -ixoff
 
 unsetopt complete_aliases
 SHELL_CONFIG_DIR=$HOME/.config/shell
-if ls $SHELL_CONFIG_DIR/*.sh >/dev/null 2>&1 ; then
-    for f in $SHELL_CONFIG_DIR/*.sh; do source $f; done
-fi
-# if ls $SHELL_CONFIG_DIR/*.zsh >/dev/null 2>&1 ; then
-#     for f in $SHELL_CONFIG_DIR/*.zsh; do source $f; done
-# fi
-
 
 #plugin management with zplug
 source /usr/share/zsh/scripts/zplug/init.zsh
@@ -52,6 +42,8 @@ zplug "esc/conda-zsh-completion"
 zplug "supercrabtree/k"
 zplug "MichaelAquilina/zsh-you-should-use"
 zplug "arzzen/calc.plugin.zsh"
+zplug "~/Programming/Shell/manor", from:local
+zplug "$SHELL_CONFIG_DIR", from:local, use:"*.sh"
 # zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
