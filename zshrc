@@ -29,39 +29,26 @@ stty -ixon -ixoff
 unsetopt complete_aliases
 SHELL_CONFIG_DIR=$HOME/.config/shell
 
-#plugin management with zplug
-source /usr/share/zsh/scripts/zplug/init.zsh
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
-zplug "zplug/zplug"
-zplug "plugins/git", from:oh-my-zsh, if:"(( $+commands[git] ))"
-zplug "zsh-users/zsh-syntax-highlighting"
-zplug "plugins/colored-man-pages", from:oh-my-zsh
-zplug "caarlos0/zsh-open-pr"
-zplug "esc/conda-zsh-completion"
-zplug "supercrabtree/k"
-zplug "MichaelAquilina/zsh-you-should-use"
-zplug "arzzen/calc.plugin.zsh"
-zplug "~/Programming/Shell/manor", from:local
-zplug "$SHELL_CONFIG_DIR", from:local, use:"*.sh"
-# zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
-zplug load
+source ~/.zplugin/bin/zplugin.zsh
+zplugin light zdharma/fast-syntax-highlighting
+# zplugin load "zsh-users/zsh-syntax-highloading"
+zplugin snippet OMZ::plugins/git/git.plugin.zsh
+zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
+zplugin load "esc/conda-zsh-completion"
+zplugin load "supercrabtree/k"
+zplugin light "MichaelAquilina/zsh-you-should-use"
+zplugin load "arzzen/calc.plugin.zsh"
 
+zplugin load olivierverdier/zsh-git-prompt
+zplugin snippet OMZ::plugins/pyenv/pyenv.plugin.zsh
+zplugin load ~/Programming/Shell/manor
+zplugin ice multisrc"*.sh"
+zplugin load $SHELL_CONFIG_DIR
 
-export SPACESHIP_CONDA_SYMBOL='\uf81f'
-export SPACESHIP_PROMPT_ADD_NEWLINE=false
-# export SPACESHIP_CONDA_PREFIX='conda '
-export SPACESHIP_CONDA_COLOR=40
-export SPACESHIP_GIT_BRANCH_COLOR=yellow
-export SPACESHIP_DIR_COLOR=81 # light blue
+autoload -Uz _zplugin
+(( ${+_comps} )) && _comps[zplugin]=_zplugin
 
-source ~/.zsh-theme/zsh-git-prompt/zshrc.sh
+# source ~/.zsh-theme/zsh-git-prompt/zshrc.sh
 source ~/.zsh-theme/gnzh.zsh-theme
 
 # >>> conda initialize >>>

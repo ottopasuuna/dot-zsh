@@ -1,5 +1,6 @@
 # ZSH Theme - Preview: http://dl.dropbox.com/u/4109351/pics/gnzh-zsh-theme.png
 # Based on bira theme
+# Modified by Carl Hofmeister
 
 # load some modules
 autoload -U colors zsh/terminfo # Used in the colour alias below
@@ -36,8 +37,9 @@ local return_code="%(?..%{$PR_RED%}%? ↵%{$PR_NO_COLOR%})"
 local user_host='${PR_USER}${PR_CYAN}@${PR_HOST}'
 local current_dir='%{$PR_BLUE%}%~%{$PR_NO_COLOR%}'
 local git_branch='$(git_super_status)%{$PR_NO_COLOR%}'
+local conda_env='%{$PR_BOLD%}%{$PR_GREEN%}${CONDA_DEFAULT_ENV}%{$PR_NO_COLOR%}'
 
-PROMPT="╭─${user_host} ${current_dir} ${git_branch}
+PROMPT="╭─${user_host} ${current_dir} ${conda_env} ${git_branch}
 ╰─$PR_PROMPT "
 RPS1="${return_code}"
 
