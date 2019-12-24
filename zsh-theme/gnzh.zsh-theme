@@ -32,11 +32,17 @@ else
   eval PR_HOST='${PR_GREEN}%M${PR_NO_COLOR}' # no SSH
 fi
 
+function git_status_if_in_repo() {
+    if git status >/dev/null 2>&1 ; then
+        eval git_super_status
+    fi
+}
+
 local return_code="%(?..%{$PR_RED%}%? ↵%{$PR_NO_COLOR%})"
 
 local user_host='${PR_USER}${PR_CYAN}@${PR_HOST}'
 local current_dir='%{$PR_BLUE%}%~%{$PR_NO_COLOR%}'
-local git_branch='$(git_super_status)%{$PR_NO_COLOR%}'
+local git_branch='$(git_status_if_in_repo)%{$PR_NO_COLOR%}'
 local conda_env='%{$PR_BOLD%}%{$PR_GREEN%}${CONDA_DEFAULT_ENV}%{$PR_NO_COLOR%}'
 
 PROMPT="╭─${user_host} ${current_dir} ${conda_env} ${git_branch}

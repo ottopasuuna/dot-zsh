@@ -48,7 +48,6 @@ zplugin load $SHELL_CONFIG_DIR
 autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
 
-# source ~/.zsh-theme/zsh-git-prompt/zshrc.sh
 source ~/.zsh-theme/gnzh.zsh-theme
 
 # >>> conda initialize >>>
