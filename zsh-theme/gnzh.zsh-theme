@@ -33,7 +33,7 @@ else
 fi
 
 function git_status_if_in_repo() {
-    if git status >/dev/null 2>&1 ; then
+    if git -C . rev-parse >/dev/null 2>&1 ; then
         eval git_super_status
     fi
 }
