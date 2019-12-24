@@ -34,7 +34,14 @@ fi
 
 function git_status_if_in_repo() {
     if git -C . rev-parse >/dev/null 2>&1 ; then
-        eval git_super_status
+        git_super_status
+    fi
+}
+
+function get_background_jobs_prompt() {
+    local num_jobs=$(jobs | wc -l)
+    if [[ $num_jobs -gt 0 ]]; then
+        echo "[$num_jobs]"
     fi
 }
 
@@ -44,10 +51,11 @@ local user_host='${PR_USER}${PR_CYAN}@${PR_HOST}'
 local current_dir='%{$PR_BLUE%}%~%{$PR_NO_COLOR%}'
 local git_branch='$(git_status_if_in_repo)%{$PR_NO_COLOR%}'
 local conda_env='%{$PR_BOLD%}%{$PR_GREEN%}${CONDA_DEFAULT_ENV}%{$PR_NO_COLOR%}'
+local job_indicator='%{$PR_BOLD%}%{$PR_MAGENTA%}$(get_background_jobs_prompt)%{$PR_NO_COLOR%}'
 
 PROMPT="╭─${user_host} ${current_dir} ${conda_env} ${git_branch}
 ╰─$PR_PROMPT "
-RPS1="${return_code}"
+RPS1="${return_code}${job_indicator}"
 
 ZSH_THEME_GIT_PROMPT_CACHE=1
 ZSH_THEME_GIT_PROMPT_PREFIX="("
