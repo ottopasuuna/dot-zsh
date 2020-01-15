@@ -32,6 +32,7 @@ SHELL_CONFIG_DIR=$HOME/.config/shell
 source ~/.zplugin/bin/zplugin.zsh
 zplugin light zdharma/fast-syntax-highlighting
 # zplugin load "zsh-users/zsh-syntax-highloading"
+zplugin load zsh-users/zsh-completions
 zplugin snippet OMZ::plugins/git/git.plugin.zsh
 zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 zplugin load "esc/conda-zsh-completion"
@@ -49,6 +50,8 @@ autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
 
 source ~/.zsh-theme/gnzh.zsh-theme
+
+bindkey -s "^h" "cd ..\n"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
