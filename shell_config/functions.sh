@@ -54,3 +54,8 @@ function cheat() {
             echo "Cheat not found, supported cheats: \n\tgit, vim, gdb, c++, task, zsh, bash, blender, regex, awk, systemd"
     esac
 }
+
+function mgrab() {
+    youtube-dl -x --audio-format m4a $1
+    mv *.m4a ~/Music
+}
