@@ -59,3 +59,8 @@ function mgrab() {
     youtube-dl -x --audio-format m4a $1
     mv *.m4a ~/Music
 }
+
+function reset_xinput() {
+	setxkbmap -option ctrl:nocaps
+	xmodmap ~/.Xmodmaprc
+}

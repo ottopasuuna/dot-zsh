@@ -39,6 +39,11 @@ zplugin load "esc/conda-zsh-completion"
 zplugin load "supercrabtree/k"
 zplugin light "MichaelAquilina/zsh-you-should-use"
 zplugin load "arzzen/calc.plugin.zsh"
+zplugin load "racket/shell-completion"
+
+# Currently giving an error message
+# zplugin ice pick"shell/exercism_completion.zsh"
+# zplugin load "exercism/cli"
 
 zplugin load olivierverdier/zsh-git-prompt
 zplugin snippet OMZ::plugins/pyenv/pyenv.plugin.zsh
@@ -48,6 +53,8 @@ zplugin load $SHELL_CONFIG_DIR
 
 autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
+
+compinit
 
 source ~/.zsh-theme/gnzh.zsh-theme
 

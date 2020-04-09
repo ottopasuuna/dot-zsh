@@ -27,6 +27,8 @@ export QT_STYLE_OVERRIDE=gtk
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
 
+export TS_SLOTS=4
+
 # Path configurations
 export GOPATH=~/Programming/go
 export KSP=~/.steam/steam/SteamApps/common/Kerbal\ Space\ Program/
