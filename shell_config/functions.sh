@@ -3,7 +3,7 @@ function search() {
 }
 
 function install() {
-    sudo pikaur -S $@ #|| sudo aura -Axa --hotedit $@
+    pikaur -S $@ #|| sudo aura -Axa --hotedit $@
 }
 
 function mr() {
@@ -63,4 +63,16 @@ function mgrab() {
 function reset_xinput() {
 	setxkbmap -option ctrl:nocaps
 	xmodmap ~/.Xmodmaprc
+	xsetwacom set 14 MapToOutput 1920x1200+1280+0
+	xsetwacom set 15 MapToOutput 1920x1200+1280+0
+}
+
+function firefox-container() {
+	podman run -d --rm --name=firefox \
+		-p 5800:5800 \
+		-e DISPLAY_WIDTH=1920 \
+		-e DISPLAY_HEIGHT=1080 \
+		-e ENABLE_CJK_FONT=1 \
+		--shm-size 2g \
+		jlesage/firefox
 }

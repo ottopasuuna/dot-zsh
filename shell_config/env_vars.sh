@@ -23,7 +23,7 @@ export DISPLAY=:0.0
 
 export LS_COLORS="di=00;34"
 export GTK_IM_MODULE=ibus
-export QT_STYLE_OVERRIDE=gtk
+# export QT_STYLE_OVERRIDE=gtk
 export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
 
