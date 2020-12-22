@@ -59,3 +59,23 @@ function mgrab() {
     youtube-dl -x --audio-format m4a $1
     mv *.m4a ~/Music
 }
+
+nuke() {
+    mkdir empty_dir
+    rsync -a --delete empty_dir $1
+    rmdir empty_dir
+}
+
+function clean_gitbranches() {
+    git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -d
+}
+
+function update_display() {
+    echo "Note this will paste commands in open vim sessions as well..."
+    for _pane in $(tmux list-panes -a -F '#{pane_id}'); do tmux send -t ${_pane} "export DISPLAY=${DISPLAY}" ENTER ; done
+}
+
+if [ -f ./work_functions.sh ]; then
+    source work_functions.sh
+fi
+

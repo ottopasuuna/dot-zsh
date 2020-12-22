@@ -19,13 +19,15 @@ export TERMINAL=termite
 export BROWSER=firefox
 
 export TERM=xterm-256color
-export DISPLAY=:0.0
+# export DISPLAY=:0.0
+
+export LC_CTYPE=en_US.UTF-8
 
 export LS_COLORS="di=00;34"
-export GTK_IM_MODULE=ibus
-export QT_STYLE_OVERRIDE=gtk
-export XMODIFIERS=@im=ibus
-export QT_IM_MODULE=ibus
+# export GTK_IM_MODULE=ibus
+# export QT_STYLE_OVERRIDE=gtk
+# export XMODIFIERS=@im=ibus
+# export QT_IM_MODULE=ibus
 
 # Path configurations
 export GOPATH=~/Programming/go
@@ -37,3 +39,7 @@ export PATH=$HOME/bin:$GOPATH/bin:/usr/local/bin:$PATH
 
 # Conda settings
 export CONDA_ROOT=$XDG_DATA_HOME/miniconda3
+
+if [ -f ./work_env_vars.sh ]; then
+    source ./work_env_vars.sh
+fi

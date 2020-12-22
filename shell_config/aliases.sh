@@ -25,6 +25,9 @@ alias arch2="sudo systemd-nspawn -b -D ~/vm/arch2 "
 alias weather="curl wttr.in"
 alias ealias="$EDITOR $SHELL_CONFIG_DIR/aliases.sh"
 
+alias mcli="make clean ui libs"
+
 for n in {1..9}; do
     alias $n="%$n";
 done
+

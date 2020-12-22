@@ -51,9 +51,10 @@ local user_host='${PR_USER}${PR_CYAN}@${PR_HOST}'
 local current_dir='%{$PR_BLUE%}%~%{$PR_NO_COLOR%}'
 local git_branch='$(git_status_if_in_repo)%{$PR_NO_COLOR%}'
 local conda_env='%{$PR_BOLD%}%{$PR_GREEN%}${CONDA_DEFAULT_ENV}%{$PR_NO_COLOR%}'
+local py_venv='%{$PR_BOLD%}%{$PR_GREEN%}${VENV_NAME}%{$PR_NO_COLOR%}'
 local job_indicator='%{$PR_BOLD%}%{$PR_MAGENTA%}$(get_background_jobs_prompt)%{$PR_NO_COLOR%}'
 
-PROMPT="╭─${user_host} ${current_dir} ${conda_env} ${git_branch}
+PROMPT="╭─${user_host} ${current_dir} ${py_venv} ${conda_env} ${git_branch}
 ╰─$PR_PROMPT "
 RPS1="${return_code}${job_indicator}"
 
