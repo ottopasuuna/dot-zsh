@@ -29,30 +29,30 @@ stty -ixon -ixoff
 unsetopt complete_aliases
 SHELL_CONFIG_DIR=$HOME/.config/shell
 
-source ~/.zplugin/bin/zplugin.zsh
-zplugin light zdharma/fast-syntax-highlighting
-# zplugin load "zsh-users/zsh-syntax-highloading"
-zplugin load zsh-users/zsh-completions
-zplugin snippet OMZ::plugins/git/git.plugin.zsh
-zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
-zplugin load "esc/conda-zsh-completion"
-zplugin load "supercrabtree/k"
-zplugin light "MichaelAquilina/zsh-you-should-use"
-zplugin load "arzzen/calc.plugin.zsh"
-zplugin load "racket/shell-completion"
+source ~/.zinit/bin/zinit.zsh
+zinit light zdharma/fast-syntax-highlighting
+# zinit load "zsh-users/zsh-syntax-highloading"
+zinit load zsh-users/zsh-completions
+zinit snippet OMZ::plugins/git/git.plugin.zsh
+zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
+zinit load "esc/conda-zsh-completion"
+zinit load "supercrabtree/k"
+zinit light "MichaelAquilina/zsh-you-should-use"
+zinit load "arzzen/calc.plugin.zsh"
+zinit load "racket/shell-completion"
 
 # Currently giving an error message
-# zplugin ice pick"shell/exercism_completion.zsh"
-# zplugin load "exercism/cli"
+# zinit ice pick"shell/exercism_completion.zsh"
+# zinit load "exercism/cli"
 
-zplugin load olivierverdier/zsh-git-prompt
-zplugin snippet OMZ::plugins/pyenv/pyenv.plugin.zsh
-zplugin load ~/Programming/Shell/manor
-zplugin ice multisrc"*.sh"
-zplugin load $SHELL_CONFIG_DIR
+zinit load olivierverdier/zsh-git-prompt
+zinit snippet OMZ::plugins/pyenv/pyenv.plugin.zsh
+zinit load ~/Programming/Shell/manor
+zinit ice multisrc"*.sh"
+zinit load $SHELL_CONFIG_DIR
 
-autoload -Uz _zplugin
-(( ${+_comps} )) && _comps[zplugin]=_zplugin
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
 
 compinit
 
