@@ -1,5 +1,8 @@
+if [[ -f "$HOME/.zinit/bin/zmodules/Src" ]]; then
+    module_path+=( "$HOME/.zinit/bin/zmodules/Src" )
+    zmodload zdharma/zplugin
+fi
 autoload -Uz compinit promptinit colors run-help, zmv
-compinit
 promptinit
 colors
 
@@ -30,6 +33,7 @@ unsetopt complete_aliases
 SHELL_CONFIG_DIR=$HOME/.config/shell
 
 source ~/.zinit/bin/zinit.zsh
+zinit ice wait lucid
 zinit light zdharma/fast-syntax-highlighting
 # zinit load "zsh-users/zsh-syntax-highloading"
 zinit load zsh-users/zsh-completions
@@ -37,6 +41,7 @@ zinit snippet OMZ::plugins/git/git.plugin.zsh
 zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 zinit load "esc/conda-zsh-completion"
 zinit load "supercrabtree/k"
+zinit ice wait lucid
 zinit light "MichaelAquilina/zsh-you-should-use"
 zinit load "arzzen/calc.plugin.zsh"
 zinit load "racket/shell-completion"
