@@ -25,6 +25,7 @@ setopt HIST_IGNORE_SPACE
 setopt GLOB_COMPLETE
 setopt emacs #expected readline behaivior
 setopt EXTENDED_GLOB
+setopt CORRECT
 
 #Dissable flow control so we can use crtl q/s
 stty -ixon -ixoff
