@@ -35,7 +35,8 @@ export KSP=~/.steam/steam/SteamApps/common/Kerbal\ Space\ Program/
 export RACK_DIR=~/Programming/VCVRack/Rack-SDK
 export ANDROID_HOME=/opt/android-sdk/tools
 
-export PATH=$HOME/bin:$GOPATH/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/.luarocks/bin:$GOPATH/bin:/usr/local/bin:$PATH
+
 
 # Conda settings
 export CONDA_ROOT=$XDG_DATA_HOME/miniconda3

@@ -53,6 +53,7 @@ zplugin load $SHELL_CONFIG_DIR
 
 autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
+(( ${+functions[module]}  )) || source /etc/modules/init/zsh
 
 compinit
 

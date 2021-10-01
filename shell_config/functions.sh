@@ -61,10 +61,11 @@ function mgrab() {
 }
 
 function reset_xinput() {
-	setxkbmap -option ctrl:nocaps
-	xmodmap ~/.Xmodmaprc
-	xsetwacom set 14 MapToOutput 1920x1200+1280+0
-	xsetwacom set 15 MapToOutput 1920x1200+1280+0
+    setxkbmap -option ctrl:nocaps
+    xmodmap ~/.Xmodmaprc
+    for id in $(xsetwacom --list devices | sed -re 's/.*id: ([0-9]*).*/\1/g'); do
+        xsetwacom set $id MapToOutput 1920x1200+1280+0
+    done
 }
 
 function firefox-container() {
