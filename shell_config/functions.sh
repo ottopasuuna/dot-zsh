@@ -1,9 +1,23 @@
+function program_exists() {
+    hash $1 > /dev/null 2>&1
+}
+
 function search() {
-    pikaur -Ss $@
+    if program_exists pikaur; then
+        pikaur -Ss $@
+    elif program_exists dnf; then
+        dnf search $@
+    else
+        echo "Could not determine package manager"
+    fi
 }
 
 function install() {
-    sudo pikaur -S $@ #|| sudo aura -Axa --hotedit $@
+    if program_exists pikaur; then
+        pikaur -S $@
+    elif program_exists dnf; then
+        sudo dnf install $@
+    fi
 }
 
 function mr() {
@@ -75,7 +89,29 @@ function update_display() {
     for _pane in $(tmux list-panes -a -F '#{pane_id}'); do tmux send -t ${_pane} "export DISPLAY=${DISPLAY}" ENTER ; done
 }
 
+
+function reset_xinput() {
+    setxkbmap -option ctrl:nocaps
+    xmodmap ~/.Xmodmaprc
+    for id in $(xsetwacom --list devices | sed -re 's/.*id: ([0-9]*).*/\1/g'); do
+        xsetwacom set $id MapToOutput 1920x1200+1280+0
+    done
+}
+
+function firefox-container() {
+	podman run -d --rm --name=firefox \
+		-p 5800:5800 \
+		-e DISPLAY_WIDTH=1920 \
+		-e DISPLAY_HEIGHT=1080 \
+		-e ENABLE_CJK_FONT=1 \
+		--shm-size 2g \
+		jlesage/firefox
+}
+
+function mkd() {
+    mkdir -p "$@" && cd "$_"
+}
+
 if [ -f ./work_functions.sh ]; then
     source work_functions.sh
 fi
-
