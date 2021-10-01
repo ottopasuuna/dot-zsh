@@ -1,9 +1,23 @@
+function program_exists() {
+    hash $1 > /dev/null 2>&1
+}
+
 function search() {
-    pikaur -Ss $@
+    if program_exists pikaur; then
+        pikaur -Ss $@
+    elif program_exists dnf; then
+        dnf search $@
+    else
+        echo "Could not determine package manager"
+    fi
 }
 
 function install() {
-    pikaur -S $@ #|| sudo aura -Axa --hotedit $@
+    if program_exists pikaur; then
+        pikaur -S $@
+    elif program_exists dnf; then
+        sudo dnf install $@
+    fi
 }
 
 function mr() {
@@ -76,4 +90,8 @@ function firefox-container() {
 		-e ENABLE_CJK_FONT=1 \
 		--shm-size 2g \
 		jlesage/firefox
+}
+
+function mkd() {
+    mkdir -p "$@" && cd "$_"
 }
