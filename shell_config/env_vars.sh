@@ -23,7 +23,7 @@ export TERM=xterm-256color
 export LC_CTYPE=en_US.UTF-8
 
 export LS_COLORS="di=00;34"
-if [ $USER == "carl" ]; then
+if [[ $USER == "carl" ]]; then
     export GTK_IM_MODULE=ibus
     # export QT_STYLE_OVERRIDE=gtk
     export XMODIFIERS=@im=ibus
