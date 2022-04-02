@@ -40,7 +40,7 @@ fi
 
 
 
-export PATH=$HOME/bin:$HOME/.luarocks/bin:$GOPATH/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/.luarocks/bin:$GOPATH/bin:/usr/local/bin:/opt/resolve/bin:$PATH
 
 
 # Conda settings
