@@ -112,6 +112,13 @@ function mkd() {
     mkdir -p "$@" && cd "$_"
 }
 
+function convert_h265() {
+    input_file=$1
+    orig_file=${input_file}.orig
+    mv $input_file $orig_file
+    ffmpeg -i ${orig_file} -c:v hevc_nvenc -vtag hvc1 -c:a copy ${input_file}
+}
+
 if [ -f ./work_functions.sh ]; then
     source work_functions.sh
 fi
