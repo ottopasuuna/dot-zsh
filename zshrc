@@ -1,7 +1,12 @@
-if [[ -f "$HOME/.zinit/bin/zmodules/Src" ]]; then
-    module_path+=( "$HOME/.zinit/bin/zmodules/Src" )
-    zmodload zdharma/zplugin
-fi
+# if [[ -f "$HOME/.zinit/bin/zmodules/Src" ]]; then
+#     module_path+=( "$HOME/.zinit/bin/zmodules/Src" )
+#     zmodload zdharma/zplugin
+# fi
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
+
 autoload -Uz compinit promptinit colors run-help, zmv
 promptinit
 colors
