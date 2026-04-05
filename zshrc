@@ -38,7 +38,11 @@ stty -ixon -ixoff
 unsetopt complete_aliases
 SHELL_CONFIG_DIR=$HOME/.config/shell
 
-source ~/.zinit/bin/zinit.zsh
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
+# source ~/.zinit/bin/zinit.zsh
 zinit ice wait lucid
 zinit light zdharma/fast-syntax-highlighting
 # zinit load "zsh-users/zsh-syntax-highloading"
@@ -86,4 +90,6 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
+# [ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
