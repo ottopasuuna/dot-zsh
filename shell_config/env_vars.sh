@@ -40,7 +40,12 @@ fi
 
 
 
-export PATH=$HOME/bin:$HOME/.luarocks/bin:$GOPATH/bin:/usr/local/bin:/opt/resolve/bin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:$GOPATH/bin:/usr/local/bin:/opt/resolve/bin:/opt/Defold:$PATH
+
+export npm_config_prefix="$HOME/.local"
+
+set lua path
+eval $(luarocks path)
 
 
 # Conda settings
