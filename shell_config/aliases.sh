@@ -25,6 +25,7 @@ alias weather="curl wttr.in"
 alias ealias="$EDITOR $SHELL_CONFIG_DIR/aliases.sh"
 alias sctl="systemctl"
 alias usctl="systemctl --user"
+alias sxiv=nsxiv
 
 # Git aliases
 # alias gl="git log --format=\"%C(auto)%h %d %Creset%s%n%Cgreen%ar %C(magenta)%an\" --graph --all"
