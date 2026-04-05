@@ -119,6 +119,10 @@ function convert_h265() {
     ffmpeg -i ${orig_file} -c:v hevc_nvenc -vtag hvc1 -c:a copy ${input_file}
 }
 
+function imageseq2mp4() {
+    ffmpeg -framerate 24 -i $1/%04d.png -c:v libx264 output.mp4
+}
+
 if [ -f ./work_functions.sh ]; then
     source work_functions.sh
 fi
